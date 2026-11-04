@@ -1,0 +1,107 @@
+{
+  "apk_bytes": 881355,
+  "apk_sha256": "fcc0eb63c07b904cec9124453a4bde2b3e88e109f7f2ce1d70afc308e5114325",
+  "apk_mb_decimal": 0.881355,
+  "apk_kib": 860.6982421875,
+  "budget_bytes": 1000000,
+  "budget_headroom_bytes": 118645,
+  "surahs": 114,
+  "verses_per_language": 6236,
+  "languages": 3,
+  "compressed_text_bytes": 775704,
+  "compressed_text_share_percent": 88.01266232108514,
+  "index_bytes": 14705,
+  "decoded_text_bytes": 4726844,
+  "entries": [
+    {
+      "name": "AndroidManifest.xml",
+      "stored_bytes": 754,
+      "decoded_bytes": 2076
+    },
+    {
+      "name": "res/drawable/icon.xml",
+      "stored_bytes": 472,
+      "decoded_bytes": 992
+    },
+    {
+      "name": "resources.arsc",
+      "stored_bytes": 980,
+      "decoded_bytes": 980
+    },
+    {
+      "name": "assets/group0.xz",
+      "stored_bytes": 590688,
+      "decoded_bytes": 590688
+    },
+    {
+      "name": "assets/group1.xz",
+      "stored_bytes": 158128,
+      "decoded_bytes": 158128
+    },
+    {
+      "name": "assets/group2.xz",
+      "stored_bytes": 26888,
+      "decoded_bytes": 26888
+    },
+    {
+      "name": "assets/index.json",
+      "stored_bytes": 3703,
+      "decoded_bytes": 14705
+    },
+    {
+      "name": "classes.dex",
+      "stored_bytes": 89245,
+      "decoded_bytes": 185984
+    },
+    {
+      "name": "META-INF/SUKOON.SF",
+      "stored_bytes": 523,
+      "decoded_bytes": 858
+    },
+    {
+      "name": "META-INF/SUKOON.RSA",
+      "stored_bytes": 1477,
+      "decoded_bytes": 1617
+    },
+    {
+      "name": "META-INF/MANIFEST.MF",
+      "stored_bytes": 438,
+      "decoded_bytes": 731
+    }
+  ],
+  "compression_experiments": [
+    {
+      "chapters_per_group": 1,
+      "groups": 114,
+      "compressed_payload_bytes": 1176340,
+      "largest_decoded_group_bytes": 362251
+    },
+    {
+      "chapters_per_group": 10,
+      "groups": 12,
+      "compressed_payload_bytes": 894396,
+      "largest_decoded_group_bytes": 1696818
+    },
+    {
+      "chapters_per_group": 20,
+      "groups": 6,
+      "compressed_payload_bytes": 831248,
+      "largest_decoded_group_bytes": 2527302
+    },
+    {
+      "chapters_per_group": 40,
+      "groups": 3,
+      "compressed_payload_bytes": 775704,
+      "largest_decoded_group_bytes": 3757975
+    },
+    {
+      "chapters_per_group": 114,
+      "groups": 1,
+      "compressed_payload_bytes": 729308,
+      "largest_decoded_group_bytes": 4726844
+    }
+  ],
+  "whole_corpus_payload_saving_bytes": 46396,
+  "whole_corpus_package_saving_percent_estimate": 5.264167106330593,
+  "experiment_limitations": "Payload sizes measured with Python XZ preset 6. Whole-APK estimates keep all other bytes fixed and ignore changed decoder/cache logic, signing and alignment. Larger groups increase decode scope and retained text."
+}

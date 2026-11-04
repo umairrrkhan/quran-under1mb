@@ -1,4 +1,3 @@
-# Local builds and credentials
 build/
 .local-signing/
 .build-source/

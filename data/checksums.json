@@ -1,0 +1,18 @@
+{
+  "group0.xz": {
+    "bytes": 590688,
+    "sha256": "6bba4da100436f0de9466ca1b3aa31ec04693decb77eda8546830b1734bcc019"
+  },
+  "group1.xz": {
+    "bytes": 158128,
+    "sha256": "835d4fd1d28fe9a5bc54d469e6f61e2bf9ac3044a7e7ed00c2ccc5b8d00cc303"
+  },
+  "group2.xz": {
+    "bytes": 26888,
+    "sha256": "5007e6393e9fcd2d80abbc14b33eafa3095ac2a9d83b2dce86ba71629633a8bf"
+  },
+  "index.json": {
+    "bytes": 14705,
+    "sha256": "e52c8d5be26d1b6d16d3357354c9a0f045115fb1489854d8db825bf627f1e436"
+  }
+}

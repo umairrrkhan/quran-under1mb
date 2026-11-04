@@ -1,0 +1,1 @@
+<resources><style name="AppTheme" parent="BaseAppTheme"><item name="android:windowSplashScreenBackground">#FAFAF8</item><item name="android:windowSplashScreenAnimatedIcon">@drawable/icon</item></style></resources>

@@ -1,0 +1,41 @@
+name: Verify Android source
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      full_matrix:
+        description: Run Android 7 through 16 framework tests
+        type: boolean
+        default: false
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out public source
+        env:
+          REPO_URL: ${{ github.server_url }}/${{ github.repository }}.git
+          COMMIT: ${{ github.sha }}
+        run: |
+          git init .
+          git remote add origin "$REPO_URL"
+          git fetch --depth 1 origin "$COMMIT"
+          git checkout --detach FETCH_HEAD
+      - name: Select Java 21 and SDK
+        run: |
+          echo "JAVA_HOME=$JAVA_HOME_21_X64" >> "$GITHUB_ENV"
+          echo "$JAVA_HOME_21_X64/bin" >> "$GITHUB_PATH"
+          sdkmanager "platforms;android-36" "build-tools;36.0.0"
+      - name: Verify corpus and released APK
+        run: python3 scripts/verify_data.py
+      - name: Build under the size cap
+        run: python3 scripts/build_android.py
+      - name: Android 16 regressions
+        if: github.event_name != 'workflow_dispatch' || !inputs.full_matrix
+        run: python3 scripts/run_tests.py
+      - name: Full Android 7 through 16 matrix
+        if: github.event_name == 'workflow_dispatch' && inputs.full_matrix
+        run: python3 scripts/run_tests.py --matrix
