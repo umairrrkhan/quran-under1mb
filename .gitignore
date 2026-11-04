@@ -1,0 +1,16 @@
+# Local builds and credentials
+build/
+.local-signing/
+.build-source/
+*.p12
+*.jks
+*.keystore
+*.key
+*.env
+__pycache__/
+*.pyc
+*.aux
+*.log
+*.out
+*.toc
+.DS_Store
