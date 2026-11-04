@@ -24,11 +24,22 @@ jobs:
           git remote add origin "$REPO_URL"
           git fetch --depth 1 origin "$COMMIT"
           git checkout --detach FETCH_HEAD
-      - name: Select Java 21 and SDK
+      - name: Install cloud build tools
         run: |
-          echo "JAVA_HOME=$JAVA_HOME_21_X64" >> "$GITHUB_ENV"
-          echo "$JAVA_HOME_21_X64/bin" >> "$GITHUB_PATH"
-          sdkmanager "platforms;android-36" "build-tools;36.0.0"
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq openjdk-21-jdk-headless maven
+          JAVA_PATH=$(readlink -f /usr/lib/jvm/java-21-openjdk-*/bin/javac)
+          JAVA_ROOT=$(dirname "$(dirname "$JAVA_PATH")")
+          echo "JAVA_HOME=$JAVA_ROOT" >> "$GITHUB_ENV"
+          echo "$JAVA_ROOT/bin" >> "$GITHUB_PATH"
+          SDK_DIR="$RUNNER_TEMP/quran-sdk"
+          mkdir -p "$SDK_DIR"
+          curl -fLsS https://dl.google.com/android/repository/platform-36_r02.zip -o "$SDK_DIR/platform.zip"
+          unzip -q "$SDK_DIR/platform.zip" -d "$SDK_DIR"
+          curl -fLsS https://dl.google.com/android/repository/build-tools_r36_linux.zip -o "$SDK_DIR/tools.zip"
+          unzip -q "$SDK_DIR/tools.zip" -d "$SDK_DIR"
+          echo "QURAN_ANDROID_JAR=$SDK_DIR/android-36/android.jar" >> "$GITHUB_ENV"
+          echo "QURAN_BUILD_TOOLS=$SDK_DIR/android-16" >> "$GITHUB_ENV"
       - name: Verify corpus and released APK
         run: python3 scripts/verify_data.py
       - name: Build under the size cap

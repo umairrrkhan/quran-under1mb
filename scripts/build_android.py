@@ -28,10 +28,11 @@ def main():
  run([tool('zipalign'),'-f','4',BUILD/'unsigned.apk',BUILD/'aligned.apk'])
  key=Path(os.environ.get('QURAN_KEYSTORE',str(BUILD/'development.p12')))
  password=os.environ.get('QURAN_STORE_PASSWORD','development-only');alias=os.environ.get('QURAN_KEY_ALIAS','quran')
+ os.environ['QURAN_BUILD_STORE_PASSWORD']=password
  if not key.exists():
   if os.environ.get('QURAN_KEYSTORE'):raise SystemExit('Configured signing key does not exist')
-  run(['keytool','-genkeypair','-keystore',key,'-storepass',password,'-keypass',password,'-alias',alias,'-keyalg','RSA','-keysize','3072','-validity','10000','-dname','CN=Quran local development'])
- run([tool('apksigner'),'sign','--ks',key,'--ks-key-alias',alias,'--ks-pass','pass:'+password,'--out',BUILD/'Quran-development.apk',BUILD/'aligned.apk'])
+  run(['keytool','-genkeypair','-keystore',key,'-storepass:env','QURAN_BUILD_STORE_PASSWORD','-keypass:env','QURAN_BUILD_STORE_PASSWORD','-alias',alias,'-keyalg','RSA','-keysize','3072','-validity','10000','-dname','CN=Quran local development'])
+ run([tool('apksigner'),'sign','--ks',key,'--ks-key-alias',alias,'--ks-pass','env:QURAN_BUILD_STORE_PASSWORD','--out',BUILD/'Quran-development.apk',BUILD/'aligned.apk'])
  run([tool('apksigner'),'verify','--min-sdk-version','24','--verbose',BUILD/'Quran-development.apk'])
  assert (BUILD/'Quran-development.apk').stat().st_size<1_000_000,'APK exceeded the size budget'
  print('Built',BUILD/'Quran-development.apk','bytes:',(BUILD/'Quran-development.apk').stat().st_size)
